@@ -1,4 +1,4 @@
-//Median of two sorted arrays of different sizes
+//@Description: Median of two sorted arrays of different sizes
 
 const findMedian = (a, b) => {
   const mArray = [...a, ...b];
