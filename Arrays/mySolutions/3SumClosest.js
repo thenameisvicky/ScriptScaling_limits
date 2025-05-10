@@ -11,6 +11,7 @@ const threeSumClosest = (array, target) => {
 
     while (j < k) {
       const sum = sortedArray[i] + sortedArray[j] + sortedArray[k];
+      //Math.abs returns the absolute value (closest value)
       if (Math.abs(sum - target) < Math.abs(closest - target)) {
         closest = sum;
       }

@@ -7,17 +7,21 @@ const mostWater = (height) => {
   let maxArea = 0;
 
   while (left < right) {
+    //Compare and update maxarea 
+    //right - left gives the gap between them and min of height[left] and height[right] gives the filling capacity of water
     maxArea = Math.max(
       maxArea,
       (right - left) * Math.min(height[left], height[right])
     );
 
+    //Finding next pair of heights
     if (height[right] < height[left]) {
       right--;
     } else {
       left++;
     }
   }
+  //finally returning maxarea
   return maxArea;
 };
 

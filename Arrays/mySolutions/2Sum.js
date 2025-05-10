@@ -3,6 +3,7 @@
 const twoSum = (nums, target) => {
   const map = new Map();
   for (let i = 0; i < nums.length; i++) {
+    //finding the completion value
     let targetNum = target - nums[i];
     if (map.has(targetNum)) {
       return [map.get(targetNum), i];
