@@ -17,6 +17,7 @@ const findMedian = (a, b) => {
     const partitonB = Math.floor((aLen + bLen + 1) / 2) - partitonA; // +1 is neccesary to get correct parititoning for odd length the even length is checked and evaluated below
 
     //Setting the left and right maximum and minimum values for finding the correct spot to do median
+    //maxA doesn't exist — we can't access arr1[-1] so we set -Infinity cause we treat maxA is smallest value as it is from 'a' array
     const maxA = partitonA === 0 ? -Infinity : a[partitonA - 1];
     const minA = partitonA === aLen ? Infinity : a[partitonA];
     const maxB = partitonB === 0 ? -Infinity : b[partitonB - 1];
