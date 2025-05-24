@@ -1,41 +1,60 @@
 const findMedian = (a, b) => {
-  //Making sure to do binary search on the smaller array
+  // @Step 1: Always do binary search on the smaller array to make logic easier and avoid out-of-bound errors
   if (a.length > b.length) {
-    return findMedian(b, a);
+    return findMedian(b, a); // swap if 'a' is not the smaller one
   }
-  //Takiing the length of arrays and setting the initial highlength as aLen value cause it is the smaller array
+
   const aLen = a.length;
   const bLen = b.length;
-  let high = aLen;
   let low = 0;
+  let high = aLen;
 
-  //Making sure we have the arrays sorted
+  // @Step 2: Binary search to find correct partition
   while (low <= high) {
-    //Begining of Partitioning the arrays this is nessesary to find center place small array
-    const partitonA = Math.floor((low + high) / 2);
-    //Subracting the partitionA (center point of small array) from the total length of the arrays to get the excat left and right side values
-    const partitonB = Math.floor((aLen + bLen + 1) / 2) - partitonA; // +1 is neccesary to get correct parititoning for odd length the even length is checked and evaluated below
+    // Partition index in 'a' (small array)
+    const partitionA = Math.floor((low + high) / 2);
+    // Partition index in 'b' (big array) so that total elements on left = total elements on right
+    const partitionB = Math.floor((aLen + bLen + 1) / 2) - partitionA;
 
-    //Setting the left and right maximum and minimum values for finding the correct spot to do median
-    //maxA doesn't exist — we can't access arr1[-1] so we set -Infinity cause we treat maxA is smallest value as it is from 'a' array
-    const maxA = partitonA === 0 ? -Infinity : a[partitonA - 1];
-    const minA = partitonA === aLen ? Infinity : a[partitonA];
-    const maxB = partitonB === 0 ? -Infinity : b[partitonB - 1];
-    const minB = partitonB === bLen ? Infinity : b[partitonB];
+    // @Step 3: Find max of left side and min of right side for both arrays
+    // If partitionA is 0, there is nothing on the left side of 'a' → treat as -Infinity
+    const maxA = partitionA === 0 ? -Infinity : a[partitionA - 1];
+    // If partitionA == aLen, there is nothing on the right → treat as +Infinity
+    const minA = partitionA === aLen ? Infinity : a[partitionA];
+
+    // Same logic for array 'b'
+    const maxB = partitionB === 0 ? -Infinity : b[partitionB - 1];
+    const minB = partitionB === bLen ? Infinity : b[partitionB];
+
+    // @Step 4: Check if we have found the correct partition
+    // If all left values are less than all right values, it's a valid split
     if (maxA <= minB && maxB <= minA) {
-      //We have found the correct partitioning and proceed to return the median
+      // @Step 5: If total length is even → take avg of two middle values
       if ((aLen + bLen) % 2 === 0) {
         return (Math.max(maxA, maxB) + Math.min(minA, minB)) / 2;
       } else {
+        // If total length is odd → middle value is the max of left side
         return Math.max(maxA, maxB);
       }
     }
+
+    // @Step 6: Adjust binary search range
+    // If maxA > minB, we're too far right in 'a', move left
     if (maxA > minB) {
-      high = partitonA - 1;
+      high = partitionA - 1;
     } else {
-      low = partitonA + 1;
+      // Else, move right in 'a'
+      low = partitionA + 1;
     }
   }
 };
 
 console.log(findMedian([1, 2, 3, 4], [5, 6, 7, 8, 9]));
+
+//@Detiled WalkThrough
+//@CalculationPart : a = [1,2] | [4,5] and b = [7,8,9] | [10,11]
+//@maxA : last element of left part in a array [2]
+//@maxB : last element of left part in b array [9]
+//@minA : first element of right part in a array [4]
+//@minB : first element of right part in b array [10]
+//Rest is Above
