@@ -1,3 +1,7 @@
+//@Description: Find median of 2 sorted arrays,
+//@time-complexity:  O(log (m+n)) - Binary search with two pointers.
+//@Pattern: Binary search and two pointers
+
 const findMedian = (a, b) => {
   // @Step 1: Always do binary search on the smaller array to make logic easier and avoid out-of-bound errors
   if (a.length > b.length) {

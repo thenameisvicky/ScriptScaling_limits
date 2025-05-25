@@ -1,5 +1,5 @@
 //@Description : Find next Permutation of given array (lexicial Order)
-
+//@Pattern: Two-Pointers
 var nextPermutation = function (nums) {
   //Nessecary to find the first element which is out pivot
   let i = nums.length - 2;

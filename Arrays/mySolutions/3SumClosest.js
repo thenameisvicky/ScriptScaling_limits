@@ -1,5 +1,5 @@
 //@description: Given an integer array nums of length n and an integer target, find three integers in nums such that the sum is closest to target.
-
+//@patterm: Two-pointers
 const threeSumClosest = (array, target) => {
   const sortedArray = array.sort((a, b) => a - b);
   let closest = sortedArray[0] + sortedArray[1] + sortedArray[2];
