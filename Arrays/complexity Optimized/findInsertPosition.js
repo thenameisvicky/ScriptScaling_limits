@@ -7,7 +7,7 @@ var searchInsert = function (nums, target) {
   let right = nums.length - 1;
 
   while (left <= right) {
-    //Mid is nessesary always in binary search
+    //Mid is nessesary always in Two pointers
     let mid = Math.floor((left + right) / 2);
     if (nums[mid] === target) {
       return mid;
