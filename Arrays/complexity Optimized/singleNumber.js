@@ -14,4 +14,6 @@ var singleNumeber = function (nums) {
   return result;
 };
 
-console.log(`Single Number Optimized Version: ${singleNumeber([1, 2, 3, 2])}`);
+console.log(
+  `Single Number Optimized Version: ${singleNumeber([1, , 1, 2, 3, 2])}`
+);
